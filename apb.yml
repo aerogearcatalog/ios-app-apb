@@ -1,0 +1,21 @@
+version: 1.0
+name: ios-app-apb
+description: Sets up an iOS App representation.
+bindable: False
+async: optional
+tags: 
+  - mobile
+metadata:
+  displayName: iOS App
+  console.openshift.io/iconClass: fa fa-ios
+plans:
+  - name: default
+    description: Sets up an iOS App representation.
+    free: True
+    metadata: {}
+    parameters: 
+    - name: appName
+      required: True
+      default: myapp
+      type: string
+      title: your new apps name

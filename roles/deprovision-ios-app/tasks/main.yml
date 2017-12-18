@@ -1,0 +1,5 @@
+- k8s_v1_config_map:
+    labels:
+      - name: '{{ appName }}'
+    namespace: '{{ namespace }}'
+    state: absent

@@ -1,0 +1,28 @@
+- name: "Generate a unique app name"
+  shell: "echo \"{{ appName }}-$(date +%s)\""
+  register: app_unique_name
+
+- name: "Generate an api key"
+  shell: "uuidgen"
+  register: api_key
+
+- name: Create Mobile App Resource
+  k8s_v1_config_map:
+    state: "present"
+    name: "{{ app_unique_name.stdout }}"
+    namespace: "{{ namespace }}"
+    resource_definition:
+      kind: "ConfigMap"
+      apiVersion: "v1"
+      metadata:
+        name: "{{ app_unique_name.stdout }}"
+        namespace: "{{ namespace }}"
+        labels:
+          group: "mobileapp"
+          name: "{{ appName }}"
+      data:
+        name: "{{ appName }}"
+        displayName: "{{ appName }}"
+        clientType: "ios"
+        apiKey: "{{ api_key.stdout }}"
+        description: "{{ app_description }}"
