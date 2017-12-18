@@ -7,7 +7,7 @@ tags:
   - mobile
 metadata:
   displayName: iOS App
-  console.openshift.io/iconClass: fa fa-ios
+  console.openshift.io/iconClass: fa fa-apple
 plans:
   - name: default
     description: Sets up an iOS App representation.
