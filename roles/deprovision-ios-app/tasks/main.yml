@@ -1,5 +1,3 @@
-- k8s_v1_config_map:
-    labels:
-      - name: '{{ appName }}'
-    namespace: '{{ namespace }}'
-    state: absent
+# Delete iOS app representation using the mobile cli
+- name: "Delete iOS app representation"
+  shell: mobile delete client {{ appName }}-ios --namespace={{ namespace }}
