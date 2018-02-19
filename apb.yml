@@ -18,4 +18,8 @@ plans:
       required: True
       default: myapp
       type: string
-      title: your new apps name
+      title: Application Name
+    - name: appIdentiifer
+      required: True
+      type: string
+      title: Bundle ID
