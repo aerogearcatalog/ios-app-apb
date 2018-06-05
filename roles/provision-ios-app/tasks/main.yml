@@ -1,3 +1,14 @@
+- name: "Get the name of the service instance"
+  shell: oc get serviceinstance --namespace={{ namespace }} -o jsonpath='{.items[?(@.spec.externalID=="{{ _apb_service_instance_id }}")].metadata.name}'
+  when: _apb_service_instance_id is defined
+  register: service_instance_name
+
 # Creates an iOS app representation using the mobile cli
 - name: "Create iOS app representation"
   shell: mobile create client {{ appName }} iOS {{ appIdentiifer }} --namespace={{ namespace }}
+
+- name: Annotate client {{ appName }}-ios
+  shell: "oc annotate mobileclient {{ appName }}-ios {{ item }} --overwrite=true -n {{ namespace }}"
+  ignore_errors: no
+  with_items:
+    - service_instance_name={{ service_instance_name.stdout }}
