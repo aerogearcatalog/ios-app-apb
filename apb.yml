@@ -21,7 +21,7 @@ plans:
       default: myapp
       type: string
       title: Application Name
-    - name: appIdentiifer
+    - name: appIdentifier
       required: True
       type: string
       title: Bundle ID
