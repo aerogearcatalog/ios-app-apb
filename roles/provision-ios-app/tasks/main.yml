@@ -3,12 +3,11 @@
   when: _apb_service_instance_id is defined
   register: service_instance_name
 
-# Creates an iOS app representation using the mobile cli
-- name: "Create iOS app representation"
-  shell: mobile create client {{ appName }} iOS {{ appIdentiifer }} --namespace={{ namespace }}
+- name: "Create IOS app representation yaml file"
+  template:
+    src: mobile-client.yml.j2
+    dest: /tmp/mobile-client.yaml
 
-- name: Annotate client {{ appName }}-ios
-  shell: "oc annotate mobileclient {{ appName }}-ios {{ item }} --overwrite=true -n {{ namespace }}"
-  ignore_errors: no
-  with_items:
-    - service_instance_name={{ service_instance_name.stdout }}
+- name: Create IOS Mobile Client
+  command: "oc create -f /tmp/mobile-client.yaml -n {{ namespace }}"
+  changed_when: false
