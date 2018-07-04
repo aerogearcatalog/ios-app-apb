@@ -8,7 +8,7 @@ tags:
 metadata:
   displayName: iOS App
   console.openshift.io/iconClass: fa fa-apple
-  documentationUrl: "http://docs.aerogear.org"
+  documentationUrl: "http://docs.aerogear.org/external/apb/ios-app.html"
   serviceName: iOS-app
 plans:
   - name: default
